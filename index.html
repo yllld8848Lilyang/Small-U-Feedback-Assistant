@@ -15,6 +15,225 @@
     @media(max-width:1100px){.app{grid-template-columns:205px minmax(0,1fr)}.workspace{grid-template-columns:minmax(0,1fr) 245px}.main-content{padding:24px 20px}.topbar{padding:0 20px}.chat{padding:16px}.config-card{margin-left:0}}
     @media(max-width:820px){.app{grid-template-columns:68px minmax(0,1fr)}.sidebar{padding:18px 8px}.brand{justify-content:center;padding:2px 0 22px}.brand-name,.brand-sub,.nav-label,.nav-text,.soon,.side-bottom{display:none}.nav button{justify-content:center;padding:12px 6px}.nav-icon{font-size:18px}.workspace{grid-template-columns:1fr}.progress-panel{order:-1}.step-list{grid-template-columns:repeat(5,minmax(100px,1fr));overflow:auto}.step{grid-template-columns:20px 1fr;padding:0 5px 3px 0;min-height:48px}.step:after{display:none}.help-card,.phase-preview{display:none}.analytics-grid{grid-template-columns:1fr}.topbar{height:54px}.main-content{padding:20px 16px}}
     @media(max-width:560px){.app{grid-template-columns:1fr}.sidebar{min-height:0;height:auto;position:sticky;top:54px;z-index:5;display:block;padding:6px 8px}.brand,.nav-label,.side-bottom{display:none}.nav{display:flex;overflow:auto;gap:3px}.nav button{width:auto;min-width:42px;justify-content:center;padding:9px 11px}.nav button .nav-text{display:none}.nav-icon{font-size:16px}.topbar{position:sticky;top:0;padding:0 14px}.top-right .date{display:none}.main-content{padding:17px 12px 30px}.page-head{display:block}.head-actions{margin-top:14px}.page-head h1{font-size:21px}.assistant-head{padding:13px}.chat{padding:13px}.config-card{padding:13px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.form-foot,.bottom-bar{align-items:flex-start;flex-direction:column}.form-foot .btn,.bottom-bar .btn{width:100%}.check-pill{padding:8px 7px}.question-head{align-items:flex-start}.actions{flex-wrap:wrap;justify-content:flex-end}.question-foot{align-items:flex-end}.step-list{grid-template-columns:repeat(5,118px)}.analytics-top{display:grid;grid-template-columns:1fr 1fr}.metric strong{font-size:19px}.preview-form{padding:16px}.bar-row{grid-template-columns:74px minmax(50px,1fr) 25px}.assistant{border-radius:10px}}
+  
+  
+/* =========================================
+   小U助手 2.0：桌面端固定布局
+========================================= */
+
+@media (min-width: 821px) {
+
+  /* 整个浏览器页面固定 */
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .app {
+    height: 100vh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* 左侧导航 */
+  .sidebar {
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  /* 右侧主工作区 */
+  .main {
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .topbar {
+    flex: 0 0 62px;
+    position: relative;
+    z-index: 5;
+  }
+
+  /* 主内容区域 */
+  .main-content:has(.assistant) {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 18px 30px 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .main-content:has(.assistant) .page-head {
+    flex-shrink: 0;
+    margin-bottom: 15px;
+  }
+
+  /* 左侧助手 + 右侧任务进度 */
+  .workspace {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  /* 助手卡片 */
+  .assistant {
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .assistant-head {
+    flex: 0 0 auto;
+    min-height: 66px;
+  }
+
+  /* 中间聊天区域独立滚动 */
+  .chat {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 20px 22px;
+    scrollbar-width: thin;
+    scrollbar-color: #dcd8ce transparent;
+  }
+
+  .chat::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .chat::-webkit-scrollbar-thumb {
+    background: #dedbd3;
+    border-radius: 10px;
+  }
+
+  /* 底部输入区：始终固定在助手卡片内 */
+  .chat-footer {
+    position: relative;
+    z-index: 3;
+    flex: 0 0 auto;
+    padding: 16px 20px 18px;
+    background: #fff;
+    border-top: 1px solid var(--line);
+  }
+
+  /* 输入框加大 */
+  .chat-compose {
+    min-height: 66px;
+    margin: 0;
+    padding: 10px 12px;
+    gap: 12px;
+    border: 1px solid #e5e1d8;
+    border-radius: 12px;
+    background: #fff;
+    transition: border-color .2s, box-shadow .2s;
+  }
+
+  .chat-compose:focus-within {
+    border-color: #dfb35f;
+    box-shadow: 0 0 0 3px rgba(230,166,56,.10);
+  }
+
+  .chat-compose input {
+    flex: 1;
+    min-width: 0;
+    min-height: 42px;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .chat-compose .btn {
+    min-width: 68px;
+    min-height: 42px;
+    padding: 10px 16px;
+  }
+
+  /* 快捷建议 */
+  .suggestions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 10px 0 0 2px;
+  }
+
+  .suggestions button {
+    padding: 7px 12px;
+    font-size: 11px;
+    border-radius: 20px;
+  }
+
+  /* 右侧任务进度栏 */
+  .progress-panel {
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #dedbd3 transparent;
+  }
+}
+
+/* 小屏幕保留原有响应式布局 */
+@media (max-width: 820px) {
+  html,
+  body {
+    height: auto;
+    overflow: auto;
+  }
+
+  .app {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
+  .main {
+    height: auto;
+    overflow: visible;
+  }
+
+  .main-content {
+    overflow: visible;
+  }
+
+  .assistant {
+    height: auto;
+    overflow: visible;
+  }
+
+  .chat {
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .chat-footer {
+    position: relative;
+    padding: 14px;
+    background: #fff;
+    border-top: 1px solid var(--line);
+  }
+}
+
+
+
+
+
+    
+  
+  
+  
   </style>
 </head>
 <body>
@@ -57,15 +276,328 @@
       const stepIndex=()=>({config:0,review:1,preview:2,published:4}[state.stage]??0);
       function progressPanel(){const stages=[['调研配置','明确目的、模块和目标团队'],['AI 生成问卷','结合产品资料生成候选题目'],['人工审核','编辑题目并检查表达'],['模拟发布','展示飞书链接与通知'],['答卷分析','查看构造演示数据']];const active=stepIndex(),pct=progress();return `<aside class="surface progress-panel"><div class="panel-title"><span>任务进度</span><span class="tabular">${pct}%</span></div><div class="panel-sub">问卷全流程</div><div class="progress-track" role="progressbar" aria-label="问卷任务进度" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><div class="progress-fill" style="width:${pct}%"></div></div><div class="step-list">${stages.map((s,i)=>`<div class="step ${i<active?'complete':''} ${i===active?'current':''}"><div class="step-mark">${i<active?'✓':i+1}</div><div><strong>${s[0]}</strong><span>${s[1]}</span></div></div>`).join('')}</div><div class="help-card"><strong>匿名调研保护</strong>仅按团队/岗位汇总。低样本量分组不展示，答卷不记录姓名或邮箱。</div><div class="phase-preview"><strong>阶段 B 规划</strong>后续增加问卷、访谈、群聊、AI 答疑、产品内反馈和测试记录的手动/表格导入；连接状态只做界面模拟。</div></aside>`}
       function baseHeader(title,desc,extra=''){return `<div class="page-head"><div><div class="eyebrow">小U AI 产品运营 · 原型演示</div><h1>${title}</h1><p>${desc}</p></div>${extra?`<div class="head-actions">${extra}</div>`:''}</div>`}
-      function assistantPage(){
-        const progressView=progressPanel();
-        let center='';
-        if(state.stage==='config') center=`<div class="message"><div class="msg-icon">✦</div><div class="bubble">你好，我是小U问卷助手。告诉我想了解的功能和对象，我会先帮你整理调研配置，再生成可审核的问卷。</div></div><div class="message"><div class="msg-icon">✦</div><div class="bubble">我已根据小U功能模块准备好问卷配置。团队与岗位仅用于匿名分组统计，问卷不会收集姓名。</div></div><section class="config-card"><div class="config-top"><div><h2>配置本次调研</h2><p>配置将作为 AI 生成问卷的上下文</p></div><span class="config-tag">草稿 · 可调整</span></div><div class="form-grid"><div class="field full"><label for="objective">调研目的</label><input id="objective" value="${esc(state.objective)}" placeholder="例如：了解脚本生成的使用体验"></div><div class="field"><label for="feature">小U功能模块</label><select id="feature">${optionList(featureOptions,state.feature)}</select></div><div class="field"><label for="team">目标功能团队</label><select id="team">${optionList(teamOptions,state.team)}</select></div><div class="field"><label for="role">目标岗位类别</label><select id="role">${optionList(roleOptions,state.role)}</select></div><div class="field"><label for="qcount">题目数量 <span class="hint">· 发起人可调</span></label><input id="qcount" type="number" min="3" max="12" value="${state.length}"></div><div class="field"><label>题型</label><div class="check-row">${['单选题','多选题','评分题','开放题'].map((t,i)=>`<label class="check-pill"><input type="checkbox" data-type="${t}" ${state.types.includes(t)?'checked':''}>${t}</label>`).join('')}</div></div><div class="field"><label for="ratio">开放题数量</label><select id="ratio">${optionList(['1 道开放题','2 道开放题','3 道开放题'],state.openRatio)}</select></div><div class="field full"><label for="note">特殊要求（自然语言）</label><textarea id="note" placeholder="说明希望重点了解的问题、语气或答题时间">${esc(state.note)}</textarea><span class="hint">避免诱导性问题；不要输入真实用户姓名或敏感业务信息。</span></div></div><div class="form-foot"><span class="privacy-note">✓ 匿名答卷 · 团队/岗位分组 · 小样本隐藏</span><button class="btn primary" data-action="generate">确认配置并生成问卷 →</button></div></section><div class="chat-compose"><input id="chatInput" placeholder="也可以补充调研要求，例如：重点了解脚本开头的吸引力……"><button class="btn" data-action="send-note">发送</button></div><div class="suggestions"><button data-suggestion="重点关注生成内容的人设一致性">人设一致性</button><button data-suggestion="了解用户最常进行的修改步骤">生成后修改</button><button data-suggestion="希望问卷控制在 5 分钟内">控制答题时长</button></div>`;
-        else if(state.stage==='review') center=`<div class="message"><div class="msg-icon">✦</div><div class="bubble">问卷草稿已生成。请逐题检查表达、选项和调研目标是否匹配；你可以编辑、删除或重新生成题目。</div></div><div class="review-summary"><strong>调研目标：</strong>${esc(state.objective)}<br><strong>目标人群：</strong>${esc(state.team)} · ${esc(state.role)}　　<strong>模块：</strong>${esc(state.feature)}<div class="source-cite">依据：小U产品功能说明与已确认的调研配置。当前题目为本地演示生成结果。</div></div><div class="section-head"><div><h2>候选问卷题目</h2><p>${state.questions.length} 道 · 可编辑 · 匿名回答</p></div><button class="btn" data-action="add-question">＋ 添加题目</button></div><div class="question-list">${state.questions.map((q,i)=>questionCard(q,i)).join('')}</div><div class="review-actions"><button class="btn" data-action="back-config">返回配置</button><button class="btn" data-action="regenerate">重新生成</button><button class="btn primary" data-action="to-preview">审核完成，预览问卷 →</button></div>`;
-        else if(state.stage==='preview') center=`<div class="message"><div class="msg-icon">✦</div><div class="bubble">请检查答卷人看到的问卷说明和题目。确认后只会模拟生成飞书答题链接与通知，不会真实发布。</div></div><div class="surface preview-form"><div class="anon-note">◎ 匿名问卷 · 仅按团队/岗位做汇总 · 不收集姓名</div><h2>${esc(state.feature)}使用体验调研</h2><p class="intro">${esc(state.objective)}。问卷约 ${Math.max(2,Math.round(state.questions.length*.45))} 分钟完成。请根据近期使用体验作答；请勿填写姓名或其他个人信息。</p>${state.questions.map((q,i)=>`<div class="preview-question"><h3>${i+1}. ${esc(q.text)} ${q.required?'<span style="color:#b95d4f">*</span>':''}</h3>${q.type==='开放题'?`<textarea class="field-control" placeholder="请输入你的回答" style="width:100%;min-height:70px;border:1px solid #e5e1d8;border-radius:8px;padding:10px"></textarea>`:q.type==='评分题'?`<div class="preview-option">${[1,2,3,4,5].map(n=>`<label><input type="radio" name="p${i}"> ${n}</label>`).join('　')}</div>`:q.options.map((o,j)=>`<label class="preview-option"><input type="${q.type==='多选题'?'checkbox':'radio'}" name="p${i}"> ${esc(o)}</label>`).join('')}</div>`).join('')}<div class="bottom-bar"><span class="privacy-note">演示预览 · 答案不会提交到真实系统</span><button class="btn primary" data-action="simulate-publish">模拟发布到企业飞书 →</button></div></div><div class="review-actions"><button class="btn" data-action="to-review">返回编辑</button></div>`;
-        else center=`<div class="message"><div class="msg-icon">✦</div><div class="bubble">问卷已完成模拟发布。下面的看板使用构造演示数据展示分析方式，并非真实小U答卷。</div></div><div class="notice">问卷已模拟对接企业飞书，并生成答题链接与通知。正式环境需接入企业认证与消息推送接口。</div><div class="section-head" style="margin-top:20px"><div><h2>发布摘要</h2><p>本次发布为本地原型模拟</p></div><button class="btn" data-action="open-publish">查看模拟链接与通知</button></div><div class="review-actions"><button class="btn" data-action="to-preview">查看问卷预览</button><button class="btn primary" data-action="go-analytics">查看答卷分析 →</button></div>`;
-        return `${baseHeader('小U问卷洞察助手','从调研配置到问卷审核与数据分析，形成可复核的产品运营闭环。',`<span class="badge">阶段 A · 问卷闭环</span>`)}<div class="workspace"><section class="surface assistant"><div class="assistant-head"><div class="agent"><div class="agent-icon">✦</div><div><div class="agent-title">小U调研 Agent</div><div class="agent-meta">● 在线 · 可检索产品知识</div></div></div><div class="head-actions"><button class="btn" data-action="new-survey">＋ 新建问卷</button></div></div><div class="chat">${center}</div></section>${progressView}</div>`;
-      }
+      
+function assistantPage(){
+  const progressView = progressPanel();
+  let center = '';
+
+  if(state.stage === 'config') {
+    center = `
+      <div class="message">
+        <div class="msg-icon">✦</div>
+        <div class="bubble">
+          你好，我是小U问卷助手。告诉我想了解的功能和对象，
+          我会先帮你整理调研配置，再生成可审核的问卷。
+        </div>
+      </div>
+
+      <div class="message">
+        <div class="msg-icon">✦</div>
+        <div class="bubble">
+          我已根据小U功能模块准备好问卷配置。
+          团队与岗位仅用于匿名分组统计，问卷不会收集姓名。
+        </div>
+      </div>
+
+      <section class="config-card">
+        <div class="config-top">
+          <div>
+            <h2>配置本次调研</h2>
+            <p>配置将作为 AI 生成问卷的上下文</p>
+          </div>
+          <span class="config-tag">草稿 · 可调整</span>
+        </div>
+
+        <div class="form-grid">
+          <div class="field full">
+            <label for="objective">调研目的</label>
+            <input id="objective"
+              value="${esc(state.objective)}"
+              placeholder="例如：了解脚本生成的使用体验">
+          </div>
+
+          <div class="field">
+            <label for="feature">小U功能模块</label>
+            <select id="feature">
+              ${optionList(featureOptions,state.feature)}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="team">目标功能团队</label>
+            <select id="team">
+              ${optionList(teamOptions,state.team)}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="role">目标岗位类别</label>
+            <select id="role">
+              ${optionList(roleOptions,state.role)}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="qcount">题目数量
+              <span class="hint">· 发起人可调</span>
+            </label>
+            <input id="qcount" type="number"
+              min="3" max="12" value="${state.length}">
+          </div>
+
+          <div class="field">
+            <label>题型</label>
+            <div class="check-row">
+              ${['单选题','多选题','评分题','开放题'].map(t =>
+                `<label class="check-pill">
+                  <input type="checkbox" data-type="${t}"
+                  ${state.types.includes(t)?'checked':''}>${t}
+                </label>`
+              ).join('')}
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="ratio">开放题数量</label>
+            <select id="ratio">
+              ${optionList(
+                ['1 道开放题','2 道开放题','3 道开放题'],
+                state.openRatio
+              )}
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="note">特殊要求（自然语言）</label>
+            <textarea id="note"
+              placeholder="说明希望重点了解的问题、语气或答题时间">${esc(state.note)}</textarea>
+            <span class="hint">
+              避免诱导性问题；不要输入真实用户姓名或敏感业务信息。
+            </span>
+          </div>
+        </div>
+
+        <div class="form-foot">
+          <span class="privacy-note">
+            ✓ 匿名答卷 · 团队/岗位分组 · 小样本隐藏
+          </span>
+          <button class="btn primary" data-action="generate">
+            确认配置并生成问卷 →
+          </button>
+        </div>
+      </section>
+    `;
+  }
+
+  else if(state.stage === 'review') {
+    center = `
+      <div class="message">
+        <div class="msg-icon">✦</div>
+        <div class="bubble">
+          问卷草稿已生成。请逐题检查表达、选项和调研目标是否匹配；
+          你可以编辑、删除或重新生成题目。
+        </div>
+      </div>
+
+      <div class="review-summary">
+        <strong>调研目标：</strong>${esc(state.objective)}<br>
+        <strong>目标人群：</strong>${esc(state.team)} · ${esc(state.role)}
+       　 <strong>模块：</strong>${esc(state.feature)}
+        <div class="source-cite">
+          依据：小U产品功能说明与已确认的调研配置。
+          当前题目为本地演示生成结果。
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <h2>候选问卷题目</h2>
+          <p>${state.questions.length} 道 · 可编辑 · 匿名回答</p>
+        </div>
+        <button class="btn" data-action="add-question">＋ 添加题目</button>
+      </div>
+
+      <div class="question-list">
+        ${state.questions.map((q,i)=>questionCard(q,i)).join('')}
+      </div>
+
+      <div class="review-actions">
+        <button class="btn" data-action="back-config">返回配置</button>
+        <button class="btn" data-action="regenerate">重新生成</button>
+        <button class="btn primary" data-action="to-preview">
+          审核完成，预览问卷 →
+        </button>
+      </div>
+    `;
+  }
+
+  else if(state.stage === 'preview') {
+    center = `
+      <div class="message">
+        <div class="msg-icon">✦</div>
+        <div class="bubble">
+          请检查答卷人看到的问卷说明和题目。
+          确认后只会模拟生成飞书答题链接与通知，不会真实发布。
+        </div>
+      </div>
+
+      <div class="surface preview-form">
+        <div class="anon-note">
+          ◎ 匿名问卷 · 仅按团队/岗位做汇总 · 不收集姓名
+        </div>
+
+        <h2>${esc(state.feature)}使用体验调研</h2>
+
+        <p class="intro">
+          ${esc(state.objective)}。
+          问卷约 ${Math.max(2,Math.round(state.questions.length*.45))}
+          分钟完成。请根据近期使用体验作答；请勿填写姓名或其他个人信息。
+        </p>
+
+        ${state.questions.map((q,i)=>`
+          <div class="preview-question">
+            <h3>
+              ${i+1}. ${esc(q.text)}
+              ${q.required?'<span style="color:#b95d4f">*</span>':''}
+            </h3>
+
+            ${q.type==='开放题'
+              ? `<textarea placeholder="请输入你的回答"
+                   style="width:100%;min-height:70px;
+                   border:1px solid #e5e1d8;border-radius:8px;padding:10px">
+                 </textarea>`
+              : q.type==='评分题'
+                ? `<div class="preview-option">
+                    ${[1,2,3,4,5].map(n=>`
+                      <label><input type="radio" name="p${i}"> ${n}</label>
+                    `).join('　')}
+                  </div>`
+                : q.options.map(o=>`
+                    <label class="preview-option">
+                      <input type="${q.type==='多选题'?'checkbox':'radio'}"
+                        name="p${i}">
+                      ${esc(o)}
+                    </label>
+                  `).join('')
+            }
+          </div>
+        `).join('')}
+
+        <div class="bottom-bar">
+          <span class="privacy-note">
+            演示预览 · 答案不会提交到真实系统
+          </span>
+          <button class="btn primary" data-action="simulate-publish">
+            模拟发布到企业飞书 →
+          </button>
+        </div>
+      </div>
+
+      <div class="review-actions">
+        <button class="btn" data-action="to-review">返回编辑</button>
+      </div>
+    `;
+  }
+
+  else {
+    center = `
+      <div class="message">
+        <div class="msg-icon">✦</div>
+        <div class="bubble">
+          问卷已完成模拟发布。下面的看板使用构造演示数据展示分析方式，
+          并非真实小U答卷。
+        </div>
+      </div>
+
+      <div class="notice">
+        问卷已模拟对接企业飞书，并生成答题链接与通知。
+        正式环境需接入企业认证与消息推送接口。
+      </div>
+
+      <div class="section-head" style="margin-top:20px">
+        <div>
+          <h2>发布摘要</h2>
+          <p>本次发布为本地原型模拟</p>
+        </div>
+        <button class="btn" data-action="open-publish">
+          查看模拟链接与通知
+        </button>
+      </div>
+
+      <div class="review-actions">
+        <button class="btn" data-action="to-preview">查看问卷预览</button>
+        <button class="btn primary" data-action="go-analytics">
+          查看答卷分析 →
+        </button>
+      </div>
+    `;
+  }
+
+  return `
+    ${baseHeader(
+      '小U问卷洞察助手',
+      '从调研配置到问卷审核与数据分析，形成可复核的产品运营闭环。',
+      '<span class="badge">阶段 A · 问卷闭环</span>'
+    )}
+
+    <div class="workspace">
+
+      <section class="surface assistant">
+
+        <div class="assistant-head">
+          <div class="agent">
+            <div class="agent-icon">✦</div>
+            <div>
+              <div class="agent-title">小U调研 Agent</div>
+              <div class="agent-meta">● 在线 · 可检索产品知识</div>
+            </div>
+          </div>
+
+          <div class="head-actions">
+            <button class="btn" data-action="new-survey">
+              ＋ 新建问卷
+            </button>
+          </div>
+        </div>
+
+        <!-- 中间内容：独立滚动 -->
+        <div class="chat">
+          ${center}
+        </div>
+
+        <!-- 底部输入框：独立于聊天内容 -->
+        <div class="chat-footer">
+
+          <div class="chat-compose">
+            <input
+              id="chatInput"
+              placeholder="也可以补充调研要求，例如：重点了解脚本开头的吸引力……"
+            >
+            <button class="btn" data-action="send-note">发送</button>
+          </div>
+
+          <div class="suggestions">
+            <button data-suggestion="重点关注生成内容的人设一致性">
+              人设一致性
+            </button>
+            <button data-suggestion="了解用户最常进行的修改步骤">
+              生成后修改
+            </button>
+            <button data-suggestion="希望问卷控制在 5 分钟内">
+              控制答题时长
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+      ${progressView}
+
+    </div>
+  `;
+}
+
       function questionCard(q,i){const editing=state.editing===i;return `<article class="question-card"><div class="question-head"><div class="question-labels"><span class="chip">${esc(q.type)}</span><span class="chip muted">${q.required?'必答':'选答'}</span><span class="chip muted">第 ${i+1} 题</span></div><button class="btn quiet" data-action="toggle-required" data-index="${i}">${q.required?'设为选答':'设为必答'}</button></div>${editing?`<textarea class="edit-area" data-edit-text="${i}">${esc(q.text)}</textarea>${q.options.length?`<textarea class="edit-area" data-edit-options="${i}" style="margin-top:7px;min-height:58px" placeholder="每行一个选项">${esc(q.options.join('\n'))}</textarea>`:''}<div class="question-foot"><small>修改后保存</small><div class="actions"><button class="btn" data-action="cancel-edit" data-index="${i}">取消</button><button class="btn primary" data-action="save-edit" data-index="${i}">保存</button></div></div>`:`<div class="question-title">${esc(q.text)}</div>${q.options.length?`<div class="options">${q.options.map(o=>`<div class="option"><span>○</span>${esc(o)}</div>`).join('')}</div>`:`<div class="option" style="color:#899197">开放文本回答</div>`}<div class="question-foot"><small>来源依据：${esc(q.source)}</small><div class="actions"><button class="btn" data-action="edit-question" data-index="${i}">编辑</button><button class="btn" data-action="regenerate-one" data-index="${i}">重生成</button><button class="btn danger" data-action="delete-question" data-index="${i}">删除</button></div></div>`}</article>`}
       function surveysPage(){return `${baseHeader('问卷管理','查看草稿与模拟发布任务。所有页面中的答卷数字均为构造演示数据。',`<button class="btn primary" data-action="new-survey">＋ 创建问卷</button>`)}<section class="surface" style="padding:16px"><div class="table-wrap"><table class="data-table"><thead><tr><th>问卷名称</th><th>调研模块</th><th>目标团队</th><th>题目</th><th>状态</th><th>最近更新</th><th>操作</th></tr></thead><tbody><tr><td>脚本生成使用体验调研</td><td>抖音脚本生成</td><td>内容创作与策划</td><td>${state.questions.length||6} 道</td><td><span class="status ${state.published?'published':'draft'}">${state.published?'已模拟发布':'草稿'}</span></td><td>刚刚</td><td><button class="btn" data-action="continue-survey">${state.questions.length?'继续编辑':'打开草稿'}</button> <button class="btn" data-action="go-analytics">分析</button></td></tr><tr><td>评论分析功能回访问卷</td><td>评论获取及分析</td><td>达人与账号运营</td><td>—</td><td><span class="status">示例草稿</span></td><td>演示数据</td><td><button class="btn" data-action="toast-coming">查看</button></td></tr></tbody></table></div></section><div class="privacy-banner" style="margin-top:13px">原型不连接真实飞书；如需公开展示，答卷和发布数据均使用构造数据。</div>`}
       function analyticsPage(){const teams=[['内容创作与策划',14],['短视频剪辑与后期',9],['达人与账号运营',8],['视觉设计',3],['直播运营',6]];const topics=[['脚本开头吸引力',12],['人设表达一致性',9],['生成后修改路径',7],['平台表达差异',5]];return `${baseHeader('问卷数据分析','按团队、岗位和产品模块查看匿名反馈主题。',`<span class="badge">构造演示数据</span><button class="btn" data-action="export-summary">导出分析摘要</button>`)}<div class="privacy-banner">本页为交互演示，所有答卷数和主题分布均为构造数据；小于 5 份答卷的细分分组会隐藏。</div><div class="analytics-top"><div class="metric"><span>构造答卷</span><strong>42 份</strong><small>抖音脚本生成体验调研</small></div><div class="metric"><span>匿名分组</span><strong>4 类</strong><small>按功能团队统计</small></div><div class="metric"><span>可见主题</span><strong>4 项</strong><small>来源：开放题示例回答</small></div><div class="metric"><span>隐去小样本</span><strong>1 组</strong><small>低于展示门槛</small></div></div><div class="analytics-grid"><section class="chart-panel"><h3>按功能团队查看答卷</h3><p>少于 5 份的分组不展示具体数量</p><div class="bar-list">${teams.map((t,i)=>`<div class="bar-row"><span>${t[0]}</span><div class="bar-track"><div class="bar-fill ${i%2?'green':''}" style="width:${t[1]/14*100}%"></div></div><strong>${t[1]>=5?t[1]+' 份':'已隐藏'}</strong></div>`).join('')}</div></section><section class="chart-panel"><h3>开放题高频主题</h3><p>基于构造回答归纳，可回看题目与样例记录</p>${topics.map((t,i)=>`<div class="topic-row"><span>${t[0]}</span><strong>${t[1]} 条示例提及</strong></div>`).join('')}</section></div><section class="insight"><h3>AI 初步归纳 · 待运营复核</h3><p>演示样本中，“脚本开头吸引力”和“人设表达一致性”是出现较多的回答主题。可进一步确认用户在配置输入、生成结果还是后续修改阶段遇到阻碍，再决定是否补充问卷或进入需求评审。上述主题来自构造数据，不代表真实用户结论。</p></section><section class="surface" style="padding:16px;margin-top:14px"><div class="section-head"><div><h2>分析依据</h2><p>匿名答卷不展示身份信息</p></div><span class="badge green">复核后再转需求</span></div><div class="table-wrap"><table class="data-table"><thead><tr><th>主题</th><th>关联问题</th><th>示例数</th><th>建议跟进</th></tr></thead><tbody>${topics.slice(0,3).map((t,i)=>`<tr><td>${t[0]}</td><td>开放题 ${i+1}</td><td>${t[1]}（演示）</td><td>${['补充生成输入提示','验证人设字段效果','梳理生成后修改路径'][i]}</td></tr>`).join('')}</tbody></table></div></section>`}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>小U反馈洞察助手</title>
+  <title>InsightLoop · AI 反馈与问卷助手</title>
   <style>
     :root{--ink:#172a3c;--muted:#73808b;--line:#e8e5dd;--paper:#f7f6f1;--white:#fff;--nav:#17232d;--nav-2:#21313e;--gold:#e6a638;--gold-soft:#fff2d9;--teal:#398579;--teal-soft:#e9f5f1;--red:#bb6355;--shadow:0 12px 32px rgba(28,40,48,.07);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink)}
     *{box-sizing:border-box}body{margin:0;background:var(--paper);font-size:14px}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #efc36e;outline-offset:2px}.app{min-height:100vh;display:grid;grid-template-columns:240px minmax(0,1fr)}
@@ -271,7 +271,7 @@
 <body>
   <div class="app" id="app">
     <aside class="sidebar" aria-label="主导航">
-      <div class="brand"><div class="brand-mark">小U</div><div><div class="brand-name">小U反馈洞察</div><div class="brand-sub">PRODUCT OPS WORKSPACE</div></div></div>
+      <div class="brand"><div class="brand-mark">IL</div><div><div class="brand-name">InsightLoop</div><div class="brand-sub">PRODUCT OPS WORKSPACE</div></div></div>
       <div class="nav-label">工作空间</div>
       <nav class="nav">
         <button class="active" data-page="assistant" aria-current="page"><span class="nav-icon">✦</span><span class="nav-text">问卷助手</span></button>
@@ -307,7 +307,7 @@
       const progress=()=>({config:0,review:45,preview:70,published:100}[state.stage]??0);
       const stepIndex=()=>({config:0,review:1,preview:2,published:4}[state.stage]??0);
       function progressPanel(){const stages=[['调研配置','明确目的、模块和目标团队'],['AI 生成问卷','结合产品资料生成候选题目'],['人工审核','编辑题目并检查表达'],['模拟发布','展示飞书链接与通知'],['答卷分析','查看脱敏反馈数据']];const active=stepIndex(),pct=progress();return `<aside class="surface progress-panel"><div class="panel-title"><span>任务进度</span><span class="tabular">${pct}%</span></div><div class="panel-sub">问卷全流程</div><div class="progress-track" role="progressbar" aria-label="问卷任务进度" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><div class="progress-fill" style="width:${pct}%"></div></div><div class="step-list">${stages.map((s,i)=>`<div class="step ${i<active?'complete':''} ${i===active?'current':''}"><div class="step-mark">${i<active?'✓':i+1}</div><div><strong>${s[0]}</strong><span>${s[1]}</span></div></div>`).join('')}</div><div class="help-card"><strong>匿名调研保护</strong>仅按团队/岗位汇总。低样本量分组不展示，答卷不记录姓名或邮箱。</div><div class="phase-preview"><strong>阶段 B 规划</strong>后续增加问卷、访谈、群聊、AI 答疑、产品内反馈和测试记录的手动/表格导入；连接状态只做界面模拟。</div></aside>`}
-      function baseHeader(title,desc,extra=''){return `<div class="page-head"><div><div class="eyebrow">小U AI 产品运营 · 原型演示</div><h1>${title}</h1><p>${desc}</p></div>${extra?`<div class="head-actions">${extra}</div>`:''}</div>`}
+      function baseHeader(title,desc,extra=''){return `<div class="page-head"><div><div class="eyebrow">InsightLoop · 产品运营工作台</div><h1>${title}</h1><p>${desc}</p></div>${extra?`<div class="head-actions">${extra}</div>`:''}</div>`}
       
 function assistantPage(){
   const progressView = progressPanel();
@@ -318,7 +318,7 @@ function assistantPage(){
       <div class="message">
         <div class="msg-icon">✦</div>
         <div class="bubble">
-          你好，我是小U问卷助手。告诉我想了解的功能和对象，
+          你好，我是 InsightLoop 问卷助手。告诉我想了解的功能和对象，
           我会先帮你整理调研配置，再生成可审核的问卷。
         </div>
       </div>
@@ -567,7 +567,7 @@ function assistantPage(){
 
   return `
     ${baseHeader(
-      '小U问卷洞察助手',
+      'InsightLoop 问卷助手',
       '从调研配置到问卷审核与数据分析，形成可复核的产品运营闭环。',
       '<span class="badge">阶段 A · 问卷闭环</span>'
     )}
@@ -580,7 +580,7 @@ function assistantPage(){
           <div class="agent">
             <div class="agent-icon">✦</div>
             <div>
-              <div class="agent-title">小U调研 Agent</div>
+              <div class="agent-title">InsightLoop 调研 Agent</div>
               <div class="agent-meta">● 在线 · 可检索产品知识</div>
             </div>
           </div>
@@ -680,7 +680,7 @@ function assistantPage(){
       function clickAction(action,index){switch(action){case'generate':readConfig();state.questions=templateQuestions();state.stage='review';state.confirmed=false;render();break;case'back-config':state.stage='config';render();break;case'to-preview':state.stage='preview';state.confirmed=true;render();break;case'to-review':state.stage='review';render();break;case'simulate-publish':openModal('publish');break;case'confirm-publish':state.published=true;state.stage='published';closeModal();render();toast('模拟发布完成 · 未连接真实飞书');break;case'copy-demo':{const link='https://feishu.example/s/xiaou-demo-2026';if(navigator.clipboard?.writeText)navigator.clipboard.writeText(link).then(()=>toast('演示链接已复制')).catch(()=>toast('演示链接：'+link));else toast('演示链接：'+link);break}case'open-publish':openModal('publish');break;case'go-analytics':state.page='analytics';render();break;case'new-survey':state.page='assistant';state.stage='config';state.questions=[];state.published=false;render();break;case'continue-survey':state.page='assistant';state.stage=state.questions.length?'review':'config';render();break;case'add-question':state.questions.push({type:'开放题',text:'请补充你希望小U改进的方面。',options:[],required:false,source:'发起人添加'});render();break;case'edit-question':state.editing=index;render();break;case'cancel-edit':state.editing=null;render();break;case'save-edit':{const t=el(`[data-edit-text="${index}"]`)?.value.trim();if(t)state.questions[index].text=t;const o=el(`[data-edit-options="${index}"]`);if(o)state.questions[index].options=o.value.split('\n').map(x=>x.trim()).filter(Boolean);state.editing=null;render();toast('题目已保存');break}case'delete-question':state.questions.splice(index,1);render();toast('题目已删除');break;case'toggle-required':state.questions[index].required=!state.questions[index].required;render();break;case'regenerate-one':{const q=state.questions[index];q.text=q.type==='开放题'?'请描述最近一次使用时遇到的困难或希望改进的地方。':`在「${state.feature}」的使用过程中，哪方面最值得优先优化？`;q.source='重新生成 · 调研目标';render();toast('已生成新的题目表达');break}case'regenerate':state.questions=templateQuestions();render();toast('候选题目已重新生成');break;case'export-summary':exportSummary();break;case'mock-connect':openConnectModal();break;case'close-modal':closeModal();break;case'send-note':sendNote();break;case'toast-coming':toast('该问卷为列表演示项');break}}
       function openConnectModal(){el('#modalRoot').innerHTML=`<div class="modal-backdrop" data-action="close-modal"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="connectTitle"><div class="eyebrow">阶段 B · 渠道接入</div><h2 id="connectTitle">模拟企业渠道连接</h2><p>原型只展示连接后的状态，不读取公司群聊或答疑系统的数据。</p><div class="notice">正式环境需接入企业认证与消息推送接口。</div><div class="modal-actions"><button class="btn" data-action="close-modal">关闭</button><button class="btn primary" data-action="close-modal">知道了</button></div></section></div>`}
       function sendNote(){const inp=el('#chatInput');if(!inp||!inp.value.trim())return;state.note=(state.note?state.note+' ':'')+inp.value.trim();inp.value='';render();toast('调研要求已加入配置')}
-      function exportSummary(){const text=`小U问卷分析摘要（脱敏数据）\n调研模块：${state.feature}\n目标团队：${state.team}\n目标岗位：${state.role}\n脱敏答卷：42 份\n高频反馈主题：脚本开头吸引力、人设表达一致性、生成后修改路径\n说明：本摘要所示内容来自真实反馈并已脱敏处理。`;const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='小U问卷分析摘要-脱敏数据.txt';a.click();URL.revokeObjectURL(a.href);toast('摘要已导出')}
+      function exportSummary(){const text=`InsightLoop 问卷分析摘要（脱敏数据）\n调研模块：${state.feature}\n目标团队：${state.team}\n目标岗位：${state.role}\n脱敏答卷：42 份\n高频反馈主题：脚本开头吸引力、人设表达一致性、生成后修改路径\n说明：本摘要所示内容来自真实反馈并已脱敏处理。`;const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='InsightLoop-问卷分析摘要-脱敏数据.txt';a.click();URL.revokeObjectURL(a.href);toast('摘要已导出')}
       document.addEventListener('click',e=>{if(e.target.classList.contains('modal-backdrop')){closeModal();return}const nav=e.target.closest('[data-page]');if(nav){state.page=nav.dataset.page;render();return}const suggest=e.target.closest('[data-suggestion]');if(suggest){const inp=el('#note');if(inp){inp.value=(inp.value?inp.value+' ':'')+suggest.dataset.suggestion;state.note=inp.value}toast('要求已加入配置');return}const btn=e.target.closest('[data-action]');if(btn)clickAction(btn.dataset.action,Number(btn.dataset.index));});
       document.addEventListener('change',e=>{if(e.target.id==='feature')state.feature=e.target.value;if(e.target.id==='team')state.team=e.target.value;if(e.target.id==='role')state.role=e.target.value;if(e.target.id==='ratio')state.openRatio=e.target.value});
       document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='chatInput'){e.preventDefault();sendNote()}if(e.key==='Escape')closeModal()});
